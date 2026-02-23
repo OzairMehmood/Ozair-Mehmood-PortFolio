@@ -39,7 +39,7 @@ const Profile = () => {
                     <div className="animated-border"></div>
                     <div className="avatar-placeholder" style={{ padding: '6px' }}>
                         <img
-                            src="/profile.png"
+                            src="/profile.jpeg"
                             alt="Ozair Mehmood"
                             style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                         />
