@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ozair-abbasi-portfolio.vercel.app/sitemap.xml
