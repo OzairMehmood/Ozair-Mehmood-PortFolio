@@ -17,12 +17,12 @@ export const sendEmail = async (templateParams) => {
 
     // Check if configuration is available (fallback mock behavior if not configured)
     if (
-        !SERVICE_ID || 
-        !TEMPLATE_ID || 
-        !PUBLIC_KEY || 
-        SERVICE_ID === 'service_placeholder' || 
-        TEMPLATE_ID === 'template_placeholder' || 
-        PUBLIC_KEY === 'public_key_placeholder'
+        !SERVICE_ID ||
+        !TEMPLATE_ID ||
+        !PUBLIC_KEY ||
+        SERVICE_ID === 'service_yzjgyli' ||
+        TEMPLATE_ID === 'template_nln1d86' ||
+        PUBLIC_KEY === 'gWulrHyPLIKZaCCoY'
     ) {
         console.warn('EmailJS environment variables are not set or are using placeholders. Simulating successful send.');
         return new Promise((resolve) => {
