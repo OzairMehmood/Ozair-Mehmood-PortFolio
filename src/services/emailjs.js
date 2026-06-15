@@ -22,7 +22,7 @@ export const sendEmail = async (templateParams) => {
         !PUBLIC_KEY ||
         SERVICE_ID === 'service_yzjgyli' ||
         TEMPLATE_ID === 'template_nln1d86' ||
-        PUBLIC_KEY === 'gWulrHyPLIKZaCCoY'
+        PUBLIC_KEY === 'IdiHvnMx27yiaBEXU'
     ) {
         console.warn('EmailJS environment variables are not set or are using placeholders. Simulating successful send.');
         return new Promise((resolve) => {
