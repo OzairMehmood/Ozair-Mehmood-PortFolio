@@ -1,104 +1,202 @@
+/* Experience Section Layout */
 .experience-section {
-    padding-top: 6rem;
+    padding-top: 8rem;
+    padding-bottom: 6rem;
 }
 
-.timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 3rem auto 0;
-    padding: 0 1rem;
+.experience-container {
+    display: flex;
+    gap: 3rem;
+    width: 100%;
 }
 
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 2rem;
-    height: 100%;
-    width: 2px;
-    background: var(--border-color);
+/* Side Stats Column */
+.experience-stats {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.timeline-item {
-    position: relative;
-    padding: 2.5rem;
-    margin-left: 4rem;
-    margin-bottom: 2rem;
-}
-
-.timeline-icon {
-    position: absolute;
-    left: -4rem;
-    top: 2rem;
-    width: 3rem;
-    height: 3rem;
+.achievement-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 1.25rem;
     background: var(--bg-card);
-    border: 2px solid var(--accent-primary);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.achievement-icon {
+    margin-bottom: 0.8rem;
+    color: var(--accent-secondary);
+}
+
+.achievement-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+}
+
+.achievement-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Timeline Column */
+.experience-timeline {
+    flex: 1.2;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+/* Timeline trail vertical line */
+.timeline-trail {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    width: 2px;
+    height: calc(100% - 30px);
+    background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary), transparent);
+}
+
+.timeline-card-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Timeline indicator node */
+.timeline-node {
+    position: absolute;
+    top: 25px;
+    left: -35px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
+    background: var(--bg-main);
+    border: 2px solid var(--accent-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent-secondary);
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
-    z-index: 1;
-}
-
-.job-title {
-    font-size: 1.5rem;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
-}
-
-.company {
-    font-size: 1.1rem;
-    color: var(--accent-secondary);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.duration {
-    display: inline-block;
-    font-size: 0.9rem;
-    padding: 0.3rem 0.8rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.job-description {
-    list-style-type: none;
-}
-
-.job-description li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-}
-
-.job-description li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
     color: var(--accent-primary);
-    font-size: 1.2rem;
+    z-index: 5;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
 }
 
-@media (max-width: 768px) {
-    .timeline::before {
-        left: 1rem;
+.timeline-card-content {
+    padding: 2.5rem;
+    border-radius: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-card-content:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 15px 35px -10px rgba(139, 92, 246, 0.25);
+}
+
+.timeline-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
+}
+
+.role-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 0.3rem;
+}
+
+.company-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.location-info {
+    font-size: 0.85rem;
+}
+
+.duration-tag {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    white-space: nowrap;
+}
+
+/* Bullet list for achievements */
+.achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+}
+
+.achievements-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.achievements-list li span {
+    flex: 1;
+}
+
+.bullet-icon {
+    margin-top: 0.25rem;
+    color: var(--accent-secondary);
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .experience-container {
+        flex-direction: column-reverse;
+        gap: 2.5rem;
     }
 
-    .timeline-item {
-        margin-left: 3rem;
+    .experience-stats {
+        flex-direction: row;
+    }
+
+    .achievement-card {
+        flex: 1;
         padding: 1.5rem;
     }
+}
 
-    .timeline-icon {
-        left: -3rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        top: 1.5rem;
+@media (max-width: 600px) {
+    .experience-stats {
+        flex-direction: column;
+    }
+
+    .timeline-card-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .duration-tag {
+        align-self: flex-start;
+    }
+
+    .timeline-card-content {
+        padding: 1.8rem;
     }
 }

@@ -1,0 +1,85 @@
+/* Custom Cursor Container */
+.custom-cursor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Hide default cursor on desktop when hovering over window */
+@media (pointer: fine) {
+    body, a, button, input, textarea, select, .social-icon, .nav-link {
+        cursor: none !important;
+    }
+
+    .custom-cursor-ring {
+        display: block;
+    }
+    .custom-cursor-dot {
+        display: block;
+    }
+}
+
+/* Outer Ring Trail */
+.custom-cursor-ring {
+    display: none;
+    position: fixed;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+}
+
+/* Inner Dot */
+.custom-cursor-dot {
+    display: none;
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+}
+
+/* Cursor text styled for overlaying inside the expanded ring */
+.cursor-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    animation: fadeInScale 0.2s ease-out forwards;
+    white-space: nowrap;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Micro-animations */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Disable on devices with touchscreen */
+@media (pointer: coarse) {
+    .custom-cursor-container {
+        display: none !important;
+    }
+    body, a, button, input, textarea, select {
+        cursor: auto !important;
+    }
+}
