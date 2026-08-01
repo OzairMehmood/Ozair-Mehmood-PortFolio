@@ -43,11 +43,12 @@ const CustomCursor = () => {
 
     useEffect(() => {
         // 1. Mobile & Touch Screen Detection
-        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || 
-                              'ontouchstart' in window || 
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches ||
+                              'ontouchstart' in window ||
                               navigator.maxTouchPoints > 0;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        if (isTouchDevice) {
+        if (isTouchDevice || prefersReducedMotion) {
             document.body.classList.remove('hide-default-cursor');
             return;
         }
@@ -242,12 +243,13 @@ const CustomCursor = () => {
         };
     }, []);
 
-    // Detect mobile touch devices in rendering phase (renders empty container to skip DOM nodes)
-    const isTouchDevice = typeof window !== 'undefined' && 
-                          (window.matchMedia('(pointer: coarse)').matches || 
-                           'ontouchstart' in window);
-    
-    if (isTouchDevice) return null;
+    // Detect touch devices and reduced-motion preference at render time (skip DOM nodes entirely)
+    const skipCustomCursor = typeof window !== 'undefined' &&
+                          (window.matchMedia('(pointer: coarse)').matches ||
+                           'ontouchstart' in window ||
+                           window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    if (skipCustomCursor) return null;
 
     return (
         <div className="custom-cursor-container">

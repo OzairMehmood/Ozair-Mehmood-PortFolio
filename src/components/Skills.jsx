@@ -90,7 +90,7 @@ const Skills = () => {
     return (
         <section className="skills-section container" id="skills">
             <div className="section-header">
-                <h2 className="section-title gradient-text">Technical Expertise</h2>
+                <h2 className="section-title">Technical Expertise</h2>
                 <p className="section-subtitle text-muted">
                     Categorized breakdown of my core technical stack, frameworks, and engineering tools.
                 </p>

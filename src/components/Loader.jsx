@@ -3,9 +3,16 @@ import { gsap } from 'gsap';
 import './Loader.css';
 
 const Loader = ({ onComplete }) => {
-    const [progress, setProgress] = useState(0);
+    const prefersReducedMotion = typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const [progress, setProgress] = useState(prefersReducedMotion ? 100 : 0);
 
     useEffect(() => {
+        if (prefersReducedMotion) {
+            const id = setTimeout(onComplete, 0);
+            return () => clearTimeout(id);
+        }
+
         const ctx = gsap.context(() => {
             // Animating progress counter from 0 to 100
             const progressVal = { val: 0 };
@@ -50,7 +57,7 @@ const Loader = ({ onComplete }) => {
         });
 
         return () => ctx.revert();
-    }, [onComplete]);
+    }, [onComplete, prefersReducedMotion]);
 
     return (
         <div className="loader-container">

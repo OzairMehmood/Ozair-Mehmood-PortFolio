@@ -143,6 +143,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
+    padding: 2rem 0;
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -181,5 +183,19 @@
 
     .mobile-controls {
         display: flex;
+    }
+}
+
+@media (max-width: 400px) {
+    .mobile-nav-links {
+        gap: 1.8rem;
+    }
+
+    .mobile-nav-link {
+        font-size: 1.4rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
     }
 }

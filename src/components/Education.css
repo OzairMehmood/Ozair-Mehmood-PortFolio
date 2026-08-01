@@ -1,0 +1,62 @@
+/* Education Section - reuses Experience.css for timeline visuals,
+   this file only holds the layout tweaks specific to Education */
+.education-section {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+}
+
+.education-container {
+    justify-content: center;
+}
+
+.education-visual {
+    flex: 0.8;
+    justify-content: center;
+}
+
+.education-visual .achievement-card {
+    height: auto;
+    min-height: 220px;
+}
+
+.education-timeline {
+    flex: 1.2;
+}
+
+.coursework-heading {
+    color: var(--text-main);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.coursework-block {
+    margin-top: 1.5rem;
+}
+
+.coursework-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.coursework-tags .skill-tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    background: var(--bg-card-hover);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+.education-duration-tag {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.2);
+    color: var(--accent-secondary);
+}
+
+.education-node {
+    border-color: var(--accent-secondary);
+    color: var(--accent-secondary);
+}

@@ -80,14 +80,14 @@ const ContactForm = () => {
         <section className="contact-section container" id="contact">
             {/* Success/Error Toast notification overlay */}
             {toast.show && (
-                <div className={`toast-notification ${toast.type}`}>
+                <div className={`toast-notification ${toast.type}`} role="status" aria-live="assertive">
                     {toast.type === 'success' ? <CheckCircle size={18} /> : <AlertTriangle size={18} />}
                     <span>{toast.message}</span>
                 </div>
             )}
 
-            <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                <h2 className="section-title gradient-text">Get In Touch</h2>
+            <div className="section-header">
+                <h2 className="section-title">Get In Touch</h2>
                 <p className="section-subtitle text-muted">
                     Let's collaborate! Drop me a message and let's build something amazing together.
                 </p>

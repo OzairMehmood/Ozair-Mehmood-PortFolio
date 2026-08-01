@@ -1,0 +1,15 @@
+{
+  "name": "Ozair Mehmood | Android & Backend Developer",
+  "short_name": "Ozair Mehmood",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "theme_color": "#07070a",
+  "background_color": "#07070a",
+  "display": "standalone",
+  "start_url": "/"
+}

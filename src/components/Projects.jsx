@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './Projects.css';
 
 const projectsData = [
@@ -8,9 +8,9 @@ const projectsData = [
         id: 1,
         title: 'Shopping Assistant (FYP)',
         category: 'Full-Stack & Mobile',
+        featured: true,
         tags: ['Kotlin', 'Android SDK', 'FastAPI', 'MySQL', 'Room DB'],
-        github: 'https://github.com/ozairmehmood',
-        demo: '#',
+        github: 'https://github.com/OzairMehmood/Ecom_Shopping_Assistant',
         slides: [
             {
                 title: 'Problem Solved',
@@ -31,8 +31,7 @@ const projectsData = [
         title: 'Custom Android Launcher',
         category: 'Mobile System App',
         tags: ['Kotlin', 'Android SDK', 'SQLite', 'Material Design'],
-        github: 'https://github.com/ozairmehmood',
-        demo: '#',
+        github: 'https://github.com/OzairMehmood/My_Iphone_Launcher',
         slides: [
             {
                 title: 'Problem Solved',
@@ -50,55 +49,10 @@ const projectsData = [
     },
     {
         id: 3,
-        title: 'Object Detection REST API',
-        category: 'AI & Computer Vision',
-        tags: ['Python', 'FastAPI', 'YOLOv8', 'OpenCV', 'Docker'],
-        github: 'https://github.com/ozairmehmood',
-        demo: '#',
-        slides: [
-            {
-                title: 'Problem Solved',
-                content: 'Offloads complex image inference tasks from battery-constrained mobile systems to high-performance servers, avoiding large app packages.'
-            },
-            {
-                title: 'Key Achievements',
-                content: 'Deployed a FastAPI REST service wrapping YOLOv8 models. Optimized model weights to process video frames in under 180ms.'
-            },
-            {
-                title: 'Architecture & Design',
-                content: 'Dockerized microservice environment with endpoint token validation, logging middleware, and clean Swagger/OpenAPI docs.'
-            }
-        ]
-    },
-    {
-        id: 4,
-        title: 'Period Calendar & Cycle Tracker',
-        category: 'Mobile Health App',
-        tags: ['Kotlin', 'Android SDK', 'Room DB', 'MVVM'],
-        github: 'https://github.com/ozairmehmood',
-        demo: '#',
-        slides: [
-            {
-                title: 'Problem Solved',
-                content: 'Ensures absolute medical data privacy by avoiding cloud services. Tracks women’s health entirely offline, local-only.'
-            },
-            {
-                title: 'Key Achievements',
-                content: 'Implemented local mathematical prediction algorithms for cycle tracking. Created interactive calendar visualizations.'
-            },
-            {
-                title: 'Architecture & Design',
-                content: 'Built using Room local database, MVVM architectural state patterns, Flow, and clean repository layers.'
-            }
-        ]
-    },
-    {
-        id: 5,
         title: 'GPS Map Camera',
         category: 'Utility Camera App',
         tags: ['Kotlin', 'Camera2 API', 'Google Maps API', 'Location Services'],
-        github: 'https://github.com/ozairmehmood',
-        demo: '#',
+        github: 'https://github.com/OzairMehmood/Gps-Map-Camera',
         slides: [
             {
                 title: 'Problem Solved',
@@ -115,12 +69,11 @@ const projectsData = [
         ]
     },
     {
-        id: 6,
-        title: 'Islamic Dua & Quran App',
+        id: 4,
+        title: 'Ramadaan Companion',
         category: 'Mobile Utility App',
         tags: ['Java', 'Android SDK', 'SQLite', 'Location Services'],
-        github: 'https://github.com/ozairmehmood',
-        demo: '#',
+        github: 'https://github.com/OzairMehmood/RamadaanCompanion',
         slides: [
             {
                 title: 'Problem Solved',
@@ -135,57 +88,12 @@ const projectsData = [
                 content: 'Built in Java with optimized local database indexing for high-speed searches across large books of text.'
             }
         ]
-    },
-    {
-        id: 7,
-        title: 'Medical Dictionary (Offline)',
-        category: 'Mobile Reference App',
-        tags: ['Kotlin', 'Room DB', 'FTS Search', 'Android Speech'],
-        github: 'https://github.com/ozairmehmood',
-        demo: '#',
-        slides: [
-            {
-                title: 'Problem Solved',
-                content: 'Enables healthcare workers to instantly check over 1000+ medical terms and pronunciations in locations with poor internet.'
-            },
-            {
-                title: 'Key Achievements',
-                content: 'Implemented SQLite Full-Text Search (FTS4) for instant lookup suggestions. Integrated text-to-speech engine.'
-            },
-            {
-                title: 'Architecture & Design',
-                content: 'High-speed index tables, clean database architecture, and background database loading tasks for quick UI startup.'
-            }
-        ]
     }
 ];
 
 // Interactive Card with 3D Tilt Effect and Carousel
 const ProjectCard = ({ project }) => {
     const [activeSlide, setActiveSlide] = useState(0);
-
-    // Mouse movement hooks for Framer Motion 3D Tilt effect
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const rotateX = useTransform(y, [-200, 200], [10, -10]);
-    const rotateY = useTransform(x, [-200, 200], [-10, 10]);
-
-    const handleMouseMove = (e) => {
-        const el = e.currentTarget;
-        const rect = el.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        const mouseX = e.clientX - rect.left - width / 2;
-        const mouseY = e.clientY - rect.top - height / 2;
-        x.set(mouseX);
-        y.set(mouseY);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
 
     const nextSlide = (e) => {
         e.stopPropagation();
@@ -200,14 +108,13 @@ const ProjectCard = ({ project }) => {
     return (
         <motion.div
             className="project-card-wrapper"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ y: -6 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             data-cursor-text="Swipe Slide"
         >
             <div className="project-card glass-card">
+                {project.featured && <span className="featured-ribbon">Featured</span>}
+
                 {/* Project Header Info */}
                 <div className="project-header">
                     <span className="project-category">{project.category}</span>
@@ -248,13 +155,16 @@ const ProjectCard = ({ project }) => {
                     ))}
                 </div>
 
-                {/* Project Links Footer */}
+                {/* Project Link Footer */}
                 <div className="project-footer">
-                    <a href={project.github} target="_blank" rel="noreferrer" className="project-link-btn" aria-label="Github Code">
-                        <FaGithub size={16} /> Code
-                    </a>
-                    <a href={project.demo} className="project-link-btn primary-btn" aria-label="Live Demo">
-                        <FaExternalLinkAlt size={14} /> Live Demo
+                    <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-link-btn primary-btn"
+                        aria-label={`View ${project.title} source code on GitHub`}
+                    >
+                        <FaGithub size={18} /> View Source Code
                     </a>
                 </div>
             </div>
@@ -266,7 +176,7 @@ const Projects = () => {
     return (
         <section className="projects-section container" id="projects">
             <div className="section-header">
-                <h2 className="section-title gradient-text">Featured Projects</h2>
+                <h2 className="section-title">Featured Projects</h2>
                 <p className="section-subtitle text-muted">
                     Explore a curated list of my technical work, highlighting problem-solving, architectural design, and stack integrations.
                 </p>

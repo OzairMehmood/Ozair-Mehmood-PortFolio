@@ -14,8 +14,13 @@ import { ArrowUp } from 'lucide-react';
 import './index.css';
 
 function AppContent() {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(() => !sessionStorage.getItem('introPlayed'));
     const [showBackToTop, setShowBackToTop] = useState(false);
+
+    const handleLoaderComplete = () => {
+        sessionStorage.setItem('introPlayed', 'true');
+        setIsLoading(false);
+    };
 
     // 1. Initialize Lenis Smooth Scroll
     useEffect(() => {
@@ -57,7 +62,7 @@ function AppContent() {
 
             {/* Intro Loading Sequence */}
             {isLoading ? (
-                <Loader onComplete={() => setIsLoading(false)} />
+                <Loader onComplete={handleLoaderComplete} />
             ) : (
                 <div className="portfolio-app-root">
                     {/* Sticky Navbar */}

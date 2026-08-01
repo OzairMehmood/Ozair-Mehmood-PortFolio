@@ -60,6 +60,22 @@ const Navbar = () => {
         };
     }, []);
 
+    // Close mobile menu on Escape and lock body scroll while it's open
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') setIsOpen(false);
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
     const toggleMenu = () => setIsOpen(!isOpen);
 
     const handleNavClick = (e, id) => {
@@ -116,6 +132,8 @@ const Navbar = () => {
                         onClick={toggleMenu}
                         className="hamburger-menu"
                         aria-label="Toggle menu"
+                        aria-expanded={isOpen}
+                        aria-controls="mobile-nav-menu"
                     >
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
@@ -123,7 +141,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`mobile-nav-menu ${isOpen ? 'open' : ''}`}>
+            <div id="mobile-nav-menu" className={`mobile-nav-menu ${isOpen ? 'open' : ''}`} aria-hidden={!isOpen}>
                 <nav className="mobile-nav-links">
                     {navLinks.map((link) => (
                         <a

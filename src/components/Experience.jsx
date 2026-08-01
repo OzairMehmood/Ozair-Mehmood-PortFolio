@@ -13,7 +13,7 @@ const Experience = () => {
     return (
         <section className="experience-section container" id="experience">
             <div className="section-header">
-                <h2 className="section-title gradient-text">Professional Experience</h2>
+                <h2 className="section-title">Professional Experience</h2>
                 <p className="section-subtitle text-muted">
                     My career timeline and technical accomplishments in mobile application engineering.
                 </p>
@@ -32,8 +32,8 @@ const Experience = () => {
                             transition={{ duration: 0.6, delay: index * 0.15 }}
                             whileHover={{ y: -5, borderColor: 'var(--accent-secondary)' }}
                         >
-                            <div className="achievement-icon gradient-text">{item.icon}</div>
-                            <h3 className="achievement-value gradient-text">{item.value}</h3>
+                            <div className="achievement-icon accent-text">{item.icon}</div>
+                            <h3 className="achievement-value accent-text">{item.value}</h3>
                             <p className="achievement-label text-muted">{item.label}</p>
                         </motion.div>
                     ))}
@@ -59,7 +59,7 @@ const Experience = () => {
                             <div className="timeline-card-header">
                                 <div>
                                     <h3 className="role-title">Mobile Application Developer</h3>
-                                    <h4 className="company-title gradient-text">ZeeSign Tech</h4>
+                                    <h4 className="company-title accent-text">ZeeSign Tech</h4>
                                     <p className="location-info text-muted">Rawalpindi, Punjab, Pakistan (On-site)</p>
                                 </div>
                                 <div className="duration-tag">

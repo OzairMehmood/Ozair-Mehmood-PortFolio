@@ -76,7 +76,7 @@ a {
   }
 }
 
-/* Gradient text utility */
+/* Gradient text utility - reserved for signature brand moments (hero name, logo, loader) */
 .gradient-text {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   -webkit-background-clip: text;
@@ -84,7 +84,18 @@ a {
   background-clip: text;
 }
 
-/* Section Title styling */
+/* Solid accent utility - for in-section emphasis (numbers, stat values, sub-headings) */
+.accent-text {
+  color: var(--accent-secondary);
+}
+
+/* Shared section header block - used by every section (Skills, Experience,
+   Projects, Education, Contact) so it lives here instead of one component's file */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
 .section-title {
   font-size: 2.8rem;
   font-weight: 800;
@@ -92,9 +103,19 @@ a {
   letter-spacing: -0.02em;
 }
 
+.section-subtitle {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 1rem auto 0;
+}
+
 @media (max-width: 768px) {
   .section-title {
     font-size: 2.2rem;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
   }
 }
 
@@ -167,4 +188,14 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Respect users who've asked the OS for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

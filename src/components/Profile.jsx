@@ -67,6 +67,7 @@ const Profile = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const ctx = canvas.getContext('2d');
         let animationFrameId;
 
@@ -116,7 +117,7 @@ const Profile = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="greeting">Hello, I'm</h2>
+                        <p className="greeting">Hello, I'm</p>
                         <h1 className="name gradient-text">Ozair Mehmood</h1>
                         
                         <div className="role-typing-container">
@@ -125,7 +126,7 @@ const Profile = () => {
                                 <AnimatePresence mode="wait">
                                     <motion.span
                                         key={currentRoleIndex}
-                                        className="role-text gradient-text"
+                                        className="role-text accent-text"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -20 }}
@@ -172,8 +173,12 @@ const Profile = () => {
                         <div className="avatar-placeholder">
                             <img
                                 src="/profile.jpeg"
-                                alt="Ozair Mehmood"
+                                alt="Ozair Mehmood - Android & Backend Developer"
                                 className="profile-img-element"
+                                width="675"
+                                height="900"
+                                loading="eager"
+                                fetchPriority="high"
                             />
                         </div>
 
@@ -220,7 +225,7 @@ const Profile = () => {
                             }}
                             whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(6, 182, 212, 0.25)', borderColor: 'var(--accent-secondary)' }}
                         >
-                            <h3 className="stat-value gradient-text">{stat.title}</h3>
+                            <h3 className="stat-value accent-text">{stat.title}</h3>
                             <h4 className="stat-title">{stat.desc}</h4>
                             <p className="stat-detail text-muted">{stat.detail}</p>
                         </motion.div>
