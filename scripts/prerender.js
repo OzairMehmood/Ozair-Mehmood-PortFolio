@@ -7,10 +7,31 @@ import { createServer } from 'node:http';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, extname } from 'node:path';
-import puppeteer from 'puppeteer';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, '..', 'dist');
+
+// Vercel's build container has no browser shared libs (libnspr4.so, etc.), so
+// full Puppeteer's bundled Chromium can't launch there. On Vercel we instead
+// launch @sparticuz/chromium, a Chromium build compiled for serverless/Lambda-
+// style Linux containers. Locally (Windows/macOS/regular Linux) we use full
+// Puppeteer's own bundled Chromium, which just works out of the box.
+async function launchBrowser() {
+  if (process.env.VERCEL) {
+    const { default: chromium } = await import('@sparticuz/chromium');
+    const { launch } = await import('puppeteer-core');
+    return launch({
+      args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+    });
+  }
+
+  const { default: puppeteer } = await import('puppeteer');
+  return puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+}
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -55,9 +76,7 @@ async function prerender() {
   const { port } = server.address();
   const url = `http://127.0.0.1:${port}/`;
 
-  const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
+  const browser = await launchBrowser();
 
   try {
     const page = await browser.newPage();
